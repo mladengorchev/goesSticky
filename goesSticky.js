@@ -1,8 +1,6 @@
 (function($){
   $.fn.goesSticky = function(options){
 
-    var hey = $("#ProductThumbs").outerHeight();
-
     var settings = $.extend({
         scope: $("body"), // the relative element
         offset: 0
@@ -17,7 +15,6 @@
         offset = settings.offset;
 
     function stickyElement(){
-      var heyDynamic = $("#ProductThumbs").outerHeight();
       // Declaring vars which shouldn be in the scroll function
       var documentScroll = $(document).scrollTop(),
           dynamicTopOffset = documentScroll + offset,
@@ -66,8 +63,3 @@
     return this;
   };
 }(jQuery)); 
-
-$(".side-bar").goesSticky({
-  scope: $(".right-content"),
-  offset: 0
-})
