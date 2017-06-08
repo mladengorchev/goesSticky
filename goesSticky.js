@@ -1,3 +1,11 @@
+/*!
+ * goesSticky.js v1
+ * A simple jQuery plugin to make element sticky
+ * http://thenordicland.io, http://wemakewebsites.com
+ * Visit https://github.com/mladengorchev/goesSticky for the unminified version
+ * by Deni Gorchev
+ */
+
 (function($){
   $.fn.goesSticky = function(options){
 
@@ -12,6 +20,7 @@
         stickyHeight = this.outerHeight(),
         stickyWidth = this.outerWidth(),
         positionState = "relative",
+        parentOffsetTop = settings.scope.offset().top,
         offset = settings.offset;
 
     function stickyElement(){
@@ -26,7 +35,7 @@
           diffrence = 0;
       
       if(dynamicTopOffset > stickyInitialTopOffset && parentHeight > stickyHeight){
-        stickyScrollPosition = (documentScroll - stickyInitialTopOffset + offset ) + stickyHeight;
+        stickyScrollPosition = (documentScroll) + stickyHeight;
         positionState = "fixed";
         stickyTopBuffer = offset;
         //stickyBottomBuffer = "initial";
@@ -37,8 +46,9 @@
         //stickyBottomBuffer = "initial";
       }
 
+      console.log(parentOffsetTop)
       if(stickyScrollPosition >= parentHeight && parentHeight > stickyHeight){ 
-        stickyTopBuffer = parentHeight - stickyHeight;
+        stickyTopBuffer = (parentHeight - stickyHeight) - (stickyInitialTopOffset - parentOffsetTop);
         //stickyBottomBuffer = 0;
         positionState = "absolute";
       }
